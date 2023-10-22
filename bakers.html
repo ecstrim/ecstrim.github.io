@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bread Ingredient Calculator</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light p-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Bread Ingredient Calculator</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <!-- Calculator -->
+                <div class="mb-3">
+                    <label for="flour">Flour (g): </label>
+                    <input type="number" id="flour" class="form-control">
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="water">Water (%): </label>
+                        <input type="number" id="water" value="75" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="salt">Salt (%): </label>
+                        <input type="number" id="salt" value="2" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="yeast">Yeast (%): </label>
+                        <input type="number" id="yeast" value="1" class="form-control">
+                    </div>
+                </div>
+                <button onclick="calculate()" class="btn btn-primary mb-4">Calculate</button>
+
+                <!-- Results -->
+                <h3 class="mb-3">Results:</h3>
+                <table class="table table-bordered">
+                    <tbody id="results">
+                        <tr>
+                            <td>Water</td>
+                            <td id="waterResult" class="text-right">-</td>
+                        </tr>
+                        <tr>
+                            <td>Salt</td>
+                            <td id="saltResult" class="text-right">-</td>
+                        </tr>
+                        <tr>
+                            <td>Yeast</td>
+                            <td id="yeastResult" class="text-right">-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculate() {
+            const flourWeight = parseFloat(document.getElementById("flour").value);
+            const waterPercentage = parseFloat(document.getElementById("water").value) / 100;
+            const saltPercentage = parseFloat(document.getElementById("salt").value) / 100;
+            const yeastPercentage = parseFloat(document.getElementById("yeast").value) / 100;
+
+            const waterWeight = flourWeight * waterPercentage;
+            const saltWeight = flourWeight * saltPercentage;
+            const yeastWeight = flourWeight * yeastPercentage;
+
+            document.getElementById("waterResult").innerText = `${waterWeight.toFixed(2)}g`;
+            document.getElementById("saltResult").innerText = `${saltWeight.toFixed(2)}g`;
+            document.getElementById("yeastResult").innerText = `${yeastWeight.toFixed(2)}g`;
+        }
+    </script>
+</body>
+</html>
